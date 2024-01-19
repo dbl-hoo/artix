@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Prompt for username
+read -p "Enter the desired username: " USERNAME
+
+# Prompt for password
+read -s -p "Enter the password for $USERNAME: " PASSWORD
+echo
+
+
 # Define variables
 ROOT_PARTITION="/dev/nvme0n1p3"  # Replace with your root partition
 EFI_PARTITION="/dev/nvme0n1p1"  # Replace with your existing EFI partition
