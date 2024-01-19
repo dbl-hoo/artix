@@ -1,12 +1,9 @@
 #!/bin/bash
 
 # Define variables
-ROOT_PARTITION="/dev/nvme0n1p1"  # Replace with your root partition
-EFI_PARTITION="/dev/nvme0n1p2"  # Replace with your existing EFI partition
-NEW_PARTITION="/dev/nvme0n1p3"  # Replace with your new partition
-HOSTNAME="my-artix-install"
-USERNAME="yourusername"
-PASSWORD="yourpassword"
+ROOT_PARTITION="/dev/nvme0n1p3"  # Replace with your root partition
+EFI_PARTITION="/dev/nvme0n1p1"  # Replace with your existing EFI partition
+HOSTNAME="artix"
 PACKAGES_FILE="packages.txt"
 
 # Format existing partitions
