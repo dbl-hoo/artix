@@ -77,9 +77,9 @@ perform_chroot_setup() {
   artix-chroot /mnt hwclock --systohc
 
   #set the locale
-  artix-chroot /mnt echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+  artix-chroot /mnt "echo en_US.UTF-8 UTF-8 >> /etc/locale.gen"
   artix-chroot /mnt locale.gen
-  artix-chroot /mnt echo LANG=en_US.UTF-8 >> /etc/locale.conf
+  artix-chroot /mnt echo "LANG=en_US.UTF-8 >> /etc/locale.conf"
   
   # Prompt for username
   read -p "Enter the desired username: " USERNAME
