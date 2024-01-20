@@ -125,4 +125,5 @@ perform_chroot_setup() {
 print_disk_info
 create_and_mount_partitions
 format_efi_partition
+read -p "Press enter to continue: "
 perform_chroot_setup
