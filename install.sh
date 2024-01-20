@@ -61,7 +61,7 @@ perform_chroot_setup() {
   read -p "Enter the desired username: " USERNAME
 
   # Configure network (install and enable NetworkManager)
-  artix-chroot /mnt pacman -S networkmanager networkmanger-runit
+  artix-chroot /mnt pacman -S networkmanager networkmanager-runit
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
 
   # Install and configure bootloader (GRUB in this example)
