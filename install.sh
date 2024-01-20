@@ -1,4 +1,4 @@
-#!/bin/bash
+vi#!/bin/bash
 
 # Function to print disk information
 print_disk_info() {
