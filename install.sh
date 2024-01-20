@@ -27,6 +27,36 @@ create_and_mount_partitions() {
   mount $ROOT /mnt
 }
 
+# Function to check and format EFI partition
+format_efi_partition() {
+  # Identify the EFI partition
+  EFI_PARTITION="$(lsblk -f | grep 'EFI System Partition' | awk '{print $1}')"
+
+  # Check if an EFI partition is found
+  if [ -z "$EFI_PARTITION" ]; then
+    echo "No EFI partition found. Exiting."
+    exit 1
+  fi
+
+  # Prompt to format the EFI partition
+  read -p "Found EFI partition: $EFI_PARTITION. Do you want to format it as FAT32? (y/n): " FORMAT_CONFIRM
+
+  # Check user input
+  if [ "$FORMAT_CONFIRM" == "y" ] || [ "$FORMAT_CONFIRM" == "Y" ]; then
+    # Format EFI partition as FAT32
+    echo "Formatting $EFI_PARTITION as FAT32..."
+    mkfs.fat -F32 $EFI_PARTITION
+    echo "EFI partition formatted successfully."
+  elif [ "$FORMAT_CONFIRM" == "n" ] || [ "$FORMAT_CONFIRM" == "N" ]; then
+    echo "EFI partition will not be formatted. Exiting."
+  else
+    echo "Invalid input. Exiting."
+    exit 1
+  fi
+
+  mkdir -p mnt/boot/efi
+  mount $EFI_PARTITION
+}
 
 # Function to perform chroot setup
 perform_chroot_setup() {
@@ -68,7 +98,6 @@ perform_chroot_setup() {
   artix-chroot /mnt pacman -S grub os-prober 
 
   # Identify the EFI partition and install GRUB
-  EFI_PARTITION="$(lsblk -f $DRIVE | grep 'EFI System Partition' | awk '{print $1}')"
   artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
   # Enable os-prober in grub.cfg
