@@ -18,7 +18,7 @@ create_and_mount_partitions() {
   # Create a new 100GB ext4 partition after the existing root partition
   cfdisk $DRIVE
 
-  lsblk -f
+  lsblk -f $DRIVE
   read -p "Enter the name of the root partition for install (e.g., /dev/nvme0n1p4): " ROOT
   read -p "Enter the name of the efi partition: " EFI
 
