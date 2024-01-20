@@ -16,7 +16,7 @@ create_and_mount_partitions() {
   echo "Make sure to identify the existing partitions on $DRIVE."
 
   # Create a new 100GB ext4 partition after the existing root partition
-  cfdisk
+  cfdisk $DRIVE
 
   read -p "Enter the name of the root partition for install (e.g., /dev/nvme0n1p4): " ROOT
 
