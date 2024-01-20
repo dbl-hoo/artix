@@ -48,7 +48,7 @@ format_efi_partition() {
     exit 1
   fi
 
-  mkdir -p mnt/boot/efi
+  mkdir -p /mnt/boot/efi
   mount $EFI /mnt/boot/efi
 }
 
