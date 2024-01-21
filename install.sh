@@ -88,14 +88,9 @@ perform_chroot_setup() {
   artix-chroot /mnt locale-gen
   artix-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
   
-  # Configure network (install and enable NetworkManager)
-  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit
+  # Install network manager, grub, os-prober and enable networkmanager
+  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit grub os-prober 
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
-
-  # Install and configure bootloader (GRUB in this example)
-  artix-chroot /mnt pacman -S --noconfirm grub os-prober 
-
-  # Identify the EFI partition and install GRUB
   artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
   # Enable os-prober in grub.cfg
@@ -108,11 +103,11 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
   # Set the root password
-  artix-chroot /mnt echo "ROOT:$ROOTPWD" | chpasswd
+  artix-chroot /mnt echo "ROOT:$ROOTPWD" | sudo chpasswd
 
   # Create a user and add to wheel group for sudo access
   artix-chroot /mnt useradd -m -g users -G wheel -s /bin/bash $USERNAME
-  artix-chroot /mnt echo "$USERNAME:$USERPWD" | chpasswd
+  artix-chroot /mnt echo "$USERNAME:$USERPWD" | sudo chpasswd
 
   # Optional: Install additional software
   artix-chroot /mnt pacman -S --noconfirm nano git neofetch
