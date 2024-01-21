@@ -15,8 +15,7 @@ sudo sed -i 's/^#\(Color\)/\1/' /etc/pacman.conf
 sudo sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
 
 # add arch extra repos
-sudo sed -i '/^\[core\]/a [extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n\n[community]\nInclude = /etc/pacman.d/mirrorlist-arch' /etc/pacman.conf
-
+sudo sed -i '$a [extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n\n[community]\nInclude = /etc/pacman.d/mirrorlist-arch' /etc/pacman.conf
 
 #update repositories
 
