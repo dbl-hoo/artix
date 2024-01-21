@@ -95,7 +95,7 @@ perform_chroot_setup() {
   artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
   # Enable os-prober in grub.cfg
-  artix-chroot echo "GRUB_DISABLE_OS_PROBER=false" >> /mnt/etc/default/grub
+  artix-chroot /mnt echo "GRUB_DISABLE_OS_PROBER=false" >> /mnt/etc/default/grub
 
   # Detect other operating systems with os-prober
   artix-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
@@ -103,7 +103,7 @@ perform_chroot_setup() {
   read -p "Press enter to continue: "
 
   # Allow members of the wheel group to execute any command with sudo
-  artix-chroot echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
+  artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
   # Set the root password
   echo "Enter the new root password: "
