@@ -9,7 +9,7 @@
 
 #sudo pacman -S --noconfirm artix-archlinux-support
 
-sed -i 's/^#\(ParallelDownloads = 5\)/\1/' /etc/pacman.conf
+sudo sed -i 's/^#\(ParallelDownloads = 5\)/\1/' /etc/pacman.conf
 
 #update repositories
 sudo pacman -Syy
