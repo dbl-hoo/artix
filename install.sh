@@ -130,6 +130,7 @@ perform_chroot_setup() {
 
 # Main script
 print_disk_info
+set_variables
 create_and_mount_partitions
 format_efi_partition
 perform_chroot_setup
