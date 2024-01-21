@@ -100,8 +100,6 @@ perform_chroot_setup() {
   # Detect other operating systems with os-prober
   artix-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
-  # read -p "Press enter to continue: "
-
   # Allow members of the wheel group to execute any command with sudo
   artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
@@ -127,5 +125,4 @@ perform_chroot_setup() {
 print_disk_info
 create_and_mount_partitions
 format_efi_partition
-#read -p "Press enter to continue: "
 perform_chroot_setup
