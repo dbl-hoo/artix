@@ -93,7 +93,7 @@ perform_chroot_setup() {
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
 
   # Install and configure bootloader (GRUB in this example)
-  artix-chroot /mnt pacman -S grub os-prober 
+  artix-chroot /mnt pacman -S --noconfirm grub os-prober 
 
   # Identify the EFI partition and install GRUB
   artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
@@ -115,7 +115,7 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "$USERNAME:$USERPWD" | chpasswd
 
   # Optional: Install additional software
-  artix-chroot /mnt pacman -S nano git neofetch
+  artix-chroot /mnt pacman -S --noconfirm nano git neofetch
 
   mkdir /mnt/home/$USERNAME/install
   cp /artix/yay.sh /mnt/home/$USERNAME/install
