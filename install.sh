@@ -27,9 +27,9 @@ create_and_mount_partitions() {
   cfdisk $DRIVE
 
   lsblk -f $DRIVE
-  read -p "Enter the name of the root partition for install (e.g., /dev/nvme0n1p4): " ROOT
   read -p "Enter the name of the efi partition: " EFI
-
+  read -p "Enter the name of the root partition for install (e.g., /dev/nvme0n1p4): " ROOT
+  
   # Format the new partition
   mkfs.ext4 $ROOT
 
@@ -129,8 +129,8 @@ perform_chroot_setup() {
 }
 
 # Main script
-print_disk_info
 set_variables
+print_disk_info
 create_and_mount_partitions
 format_efi_partition
 perform_chroot_setup
