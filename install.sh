@@ -89,7 +89,7 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
   
   # Configure network (install and enable NetworkManager)
-  artix-chroot /mnt pacman -S networkmanager networkmanager-runit
+  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
 
   # Install and configure bootloader (GRUB in this example)
