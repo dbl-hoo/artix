@@ -7,6 +7,14 @@ print_disk_info() {
 }
 
 # Function to create and mount partitions
+
+set_variables() {
+  read -p "Enter hostname: " HOSTNAME
+  read -p "Enter username: " USERNAME
+  read -p "Enter the new root password: " ROOTPWD
+  read -p "Enter the new password for $USERNAME: " USERPWD
+}
+
 create_and_mount_partitions() {
   # Prompt for the drive to partition
   read -p "Enter the drive to partition (e.g., /dev/nvme0n1): " DRIVE
@@ -64,7 +72,6 @@ perform_chroot_setup() {
   fstabgen -U /mnt >> /mnt/etc/fstab
 
   #  Configure network (adjust accordingly)
-  read -p "Enter the desired hostname: " HOSTNAME
   echo "$HOSTNAME" > /mnt/etc/hostname
   echo "127.0.0.1 localhost
   ::1       localhost
@@ -81,9 +88,6 @@ perform_chroot_setup() {
   artix-chroot /mnt locale-gen
   artix-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
   
-  # Prompt for username
-  read -p "Enter the desired username: " USERNAME
-
   # Configure network (install and enable NetworkManager)
   artix-chroot /mnt pacman -S networkmanager networkmanager-runit
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
@@ -104,25 +108,24 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
   # Set the root password
-  echo "Enter the new root password: "
-  artix-chroot /mnt passwd
+  artix-chroot /mnt echo "ROOT:$ROOTPWD" | chpasswd
 
   # Create a user and add to wheel group for sudo access
   artix-chroot /mnt useradd -m -g users -G wheel -s /bin/bash $USERNAME
-  echo "Enter the new user user password: "
-  artix-chroot /mnt passwd $USERNAME
+  artix-chroot /mnt echo "$USERNAME:$USERPWD" | chpasswd
 
   # Optional: Install additional software
-  artix-chroot /mnt pacman -S nano git 
+  artix-chroot /mnt pacman -S nano git neofetch
 
   mkdir /mnt/home/$USERNAME/install
   cp /artix/yay.sh /mnt/home/$USERNAME/install
-  artix-chroot /mnt ./home/$USERNAME/install/yay.sh
-
+  
   # Unmount partitions
   umount -R /mnt
 
   echo "Artix Linux with NetworkManager and additional packages installed successfully!"
+  read -p "Press Enter to reboot"
+  reboot
 }
 
 # Main script
