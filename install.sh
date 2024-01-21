@@ -100,18 +100,18 @@ perform_chroot_setup() {
   # Allow members of the wheel group to execute any command with sudo
   artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
-  # Set the root password
-  artix-chroot /mnt echo "ROOT:$ROOTPWD" | sudo chpasswd
-
   # Create a user and add to wheel group for sudo access
-  artix-chroot /mnt useradd -m -g users -G wheel -s /bin/bash $USERNAME
-  artix-chroot /mnt echo "$USERNAME:$USERPWD" | sudo chpasswd
+  artix-chroot /mnt useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,adbusers,uucp,vboxusers $USERNAME
+
+  #change passwords
+  artix-chroot /mnt passwd
+  artix-chroot /mnt password $USERNAME
 
   # Optional: Install additional software
   artix-chroot /mnt pacman -S --noconfirm nano git neofetch
 
   mkdir /mnt/home/$USERNAME/install
-  cp yay.sh /mnt/home/$USERNAME/install
+  cp setup.sh /mnt/home/$USERNAME/install
 
   # Unmount partitions
   umount -R /mnt
