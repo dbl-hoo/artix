@@ -113,7 +113,10 @@ perform_chroot_setup() {
   artix-chroot /mnt passwd $USERNAME
 
   # Optional: Install additional software
-  artix-chroot /mnt pacman -S nano 
+  artix-chroot /mnt pacman -S nano git 
+
+  # Install yay
+  artix-chroot /mnt yay.sh
 
   # Unmount partitions
   umount -R /mnt
@@ -121,8 +124,16 @@ perform_chroot_setup() {
   echo "Artix Linux with NetworkManager and additional packages installed successfully!"
 }
 
+#Function to copy files and install yay
+copy_files() {
+  mkdir /mnt/home/$USERNAME/install
+  cp yay.sh /mnt/home/$USERNAME/install
+  artix-chroot /mnt ./home/$USERNAME/install/yay.sh
+}
+
 # Main script
 print_disk_info
 create_and_mount_partitions
 format_efi_partition
 perform_chroot_setup
+copy_files
