@@ -111,11 +111,8 @@ perform_chroot_setup() {
   artix-chroot /mnt pacman -S --noconfirm nano git neofetch
 
   mkdir /mnt/home/$USERNAME/install
-  cp /artix/yay.sh /mnt/home/$USERNAME/install
+  cp yay.sh /mnt/home/$USERNAME/install
 
-  artix-chroot /mnt passwd
-  artix-chroot /mnt passwd $USERNAME
-  
   # Unmount partitions
   umount -R /mnt
 
