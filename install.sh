@@ -103,7 +103,7 @@ perform_chroot_setup() {
   read -p "Press enter to continue: "
 
   # Allow members of the wheel group to execute any command with sudo
-  echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
+  artix-chroot echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
   # Set the root password
   echo "Enter the new root password: "
