@@ -11,8 +11,6 @@ print_disk_info() {
 set_variables() {
   read -p "Enter hostname: " HOSTNAME
   read -p "Enter username: " USERNAME
-  read -p "Enter the new root password: " ROOTPWD
-  read -p "Enter the new password for $USERNAME: " USERPWD
 }
 
 create_and_mount_partitions() {
@@ -114,6 +112,9 @@ perform_chroot_setup() {
 
   mkdir /mnt/home/$USERNAME/install
   cp /artix/yay.sh /mnt/home/$USERNAME/install
+
+  artix-chroot /mnt passwd
+  artix-chroot /mnt passwd $USERNAME
   
   # Unmount partitions
   umount -R /mnt
