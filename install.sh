@@ -87,7 +87,7 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
   
   # Install network manager, grub, os-prober and enable networkmanager
-  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit grub os-prober 
+  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit grub os-prober nano git neofetch
   artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
   artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
@@ -101,14 +101,11 @@ perform_chroot_setup() {
   artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
   # Create a user and add to wheel group for sudo access
-  artix-chroot /mnt useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,adbusers,uucp,vboxusers $USERNAME
+  artix-chroot /mnt useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,uucp $USERNAME
 
   #change passwords
   artix-chroot /mnt passwd
-  artix-chroot /mnt password $USERNAME
-
-  # Optional: Install additional software
-  artix-chroot /mnt pacman -S --noconfirm nano git neofetch
+  artix-chroot /mnt passwd $USERNAME
 
   mkdir /mnt/home/$USERNAME/install
   cp setup.sh /mnt/home/$USERNAME/install
