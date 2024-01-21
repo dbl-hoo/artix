@@ -116,7 +116,7 @@ perform_chroot_setup() {
   artix-chroot /mnt pacman -S nano git 
 
   mkdir /mnt/home/$USERNAME/install
-  cp yay.sh /mnt/home/$USERNAME/install
+  cp /artix/yay.sh /mnt/home/$USERNAME/install
   artix-chroot /mnt ./home/$USERNAME/install/yay.sh
 
   # Unmount partitions
