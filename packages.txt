@@ -1,19 +1,19 @@
-hyprland #window manager
-zsh #shell
-chezmoi #dotfile manager
-xdg-desktop-portal-hyprland #xdg-desktop portal
-xfce-polkit #polkit agent
-waybar #status bar
-swaync #notification center
-swayidle #desktop idle
-variety #wallpaper manager
-kitty #terminal
-ttf-font-awesome #font
-otf-font-awesome #font
-cliphist #wayland clipboard history
-python-pywal #pywal colors
-code #code environment
-eza #ls replacement
-fastfetch #neofetch, but faster
-zsh-autosuggestions #zsh auto suggestions
-zsh-syntax-highlighting #zsh highlights
+hyprland 
+zsh
+chezmoi
+xdg-desktop-portal-hyprland
+xfce-polkit
+waybar
+swaync
+swayidle
+variety
+kitty
+ttf-font-awesome 
+otf-font-awesome 
+cliphist
+python-pywal
+code 
+eza
+fastfetch
+zsh-autosuggestions 
+zsh-syntax-highlighting
