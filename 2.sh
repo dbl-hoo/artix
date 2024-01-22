@@ -39,10 +39,10 @@ passwd $USERNAME
 
 #create directory and copy scripts
 mkdir /home/$USERNAME/install
-cp setup.sh /home/$USERNAME/install
+cp 3.sh /home/$USERNAME/install
 cp packages.txt /home/$USERNAME/install
 cp aur_packages.txt /home/$USERNAME/install
 
-read -p "basic installation finished.  Press enter now to reboot.  Then login, confirm wifi is setup and run setup.sh to complete installation of personal packages and dotfiles"
+read -p "basic installation finished.  Press enter now to reboot.  Then login, confirm wifi is setup and run 3.sh to complete installation of personal packages and dotfiles"
 
 reboot
