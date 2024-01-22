@@ -64,7 +64,7 @@ basic_setup() {
   sv up ntpd
   
   # Basestrap essential packages and network tools for Artix Linux
-  basestrap /mnt base base-devel runit elogind-runit linux linux-firmware intel-ucode nano
+  basestrap /mnt base base-devel runit elogind-runit linux linux-firmware
 
   # Generate fstab
   fstabgen -U /mnt >> /mnt/etc/fstab
@@ -77,7 +77,7 @@ basic_setup() {
   cp aur_packages.next /mnt/artixinstall
 
   #launch the confinguration script
-  artix-chroot /mnt ./artixinstall/2.sh
+  artix-chroot /mnt ./artixinstall/chroot.sh
 }
 
 # Main script
