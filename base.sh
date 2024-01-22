@@ -71,8 +71,8 @@ basic_setup() {
 
   #copy files to /mnt
   mkdir /mnt/artixinstall
-  cp 2.sh /mnt/artixinstall
-  cp 3.sh /mnt/artixinstall
+  cp setup.sh /mnt/artixinstall
+  cp chroot.sh /mnt/artixinstall
   cp packages.txt /mnt/artixinstall
   cp aur_packages.next /mnt/artixinstall
 

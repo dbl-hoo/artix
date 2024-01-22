@@ -39,7 +39,7 @@ passwd $USERNAME
 
 #create directory and copy scripts
 mkdir /home/$USERNAME/install
-cp 3.sh /home/$USERNAME/install
+cp setup.sh /home/$USERNAME/install
 cp packages.txt /home/$USERNAME/install
 cp aur_packages.txt /home/$USERNAME/install
 
