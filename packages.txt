@@ -11,6 +11,7 @@ code
 cups
 eza
 fastfetch
+github-cli
 hplip
 hyprland
 kitty
