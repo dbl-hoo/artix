@@ -58,69 +58,25 @@ format_efi_partition() {
   mount $EFI /mnt/boot/efi
 }
 
-# Function to perform chroot setup
-perform_chroot_setup() {
+# Function to perform basic setup
+basic_setup() {
   #set the clock
   sv up ntpd
   
   # Basestrap essential packages and network tools for Artix Linux
-  basestrap /mnt base base-devel runit elogind-runit linux linux-firmware
+  basestrap /mnt base base-devel runit elogind-runit linux linux-firmware intel-ucode nano
 
   # Generate fstab
   fstabgen -U /mnt >> /mnt/etc/fstab
 
-  #  Configure network (adjust accordingly)
-  echo "$HOSTNAME" > /mnt/etc/hostname
-  echo "127.0.0.1 localhost
-  ::1       localhost
-  127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" > /mnt/etc/hosts
+  #copy files to /mnt
+  mkdir /mnt/artixinstall
+  cp configuration.sh /mnt/artixinstall
+  cp packages.txt /mnt/artixinstall
+  cp aur_packages.next /mnt/artixinstall
 
-  # set the timezone
-  artix-chroot /mnt ln -sf /usr/share/zoneinfo/Americas/New_York /etc/localtime
-
-  #Run hwclock to generate /etc/adjtime:
-  artix-chroot /mnt hwclock --systohc
-
-  #set the locale
-  artix-chroot /mnt echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-  artix-chroot /mnt locale-gen
-  artix-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-  
-  # Install network manager, grub, os-prober and enable networkmanager
-  artix-chroot /mnt pacman -S --noconfirm networkmanager networkmanager-runit grub os-prober nano git neofetch
-  artix-chroot /mnt ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
-  artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
-
-  # Enable os-prober in grub.cfg
-  artix-chroot /mnt echo "GRUB_DISABLE_OS_PROBER=false" >> /mnt/etc/default/grub
-
-  # Detect other operating systems with os-prober
-  artix-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-
-  # Allow members of the wheel group to execute any command with sudo
-  artix-chroot /mnt echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
-
-  # Create a user and add to wheel group for sudo access
-  artix-chroot /mnt useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,uucp $USERNAME
-
-  #change passwords
-  artix-chroot /mnt passwd
-  artix-chroot /mnt passwd $USERNAME
-
-  #create directory and copy scripts
-  artix-chroot /mnt mkdir /home/$USERNAME/install
-  artix-chroot /mnt cp setup.sh /home/$USERNAME/install
-  artix-chroot /mnt cp packages.txt /home/$USERNAME/install
-  artix-chroot /mnt cp aur_packages.txt /home/$USERNAME/install
-
-  read -p "Hit enter to continue: "
-
-  # Unmount partitions
-  umount -R /mnt
-
-  echo "Artix Linux with NetworkManager and additional packages installed successfully!"
-  read -p "Press Enter to reboot"
-  reboot
+  #launch the confinguration script
+  artix-chroot /mnt ./artixinstall/configuration.sh
 }
 
 # Main script
@@ -128,4 +84,4 @@ set_variables
 print_disk_info
 create_and_mount_partitions
 format_efi_partition
-perform_chroot_setup
+basic_setup
