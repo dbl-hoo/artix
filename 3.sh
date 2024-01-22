@@ -57,5 +57,4 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 install_packages
 install_aur_packages
 
-chezmoi init https://github.com/dbl-hoo/dotfiles.git
-chezmoi apply
+chezmoi init --apply dbl-hoo
