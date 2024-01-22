@@ -30,7 +30,7 @@ install_aur_packages() {
 
 
 # install yay
-git clone https://aur.archlinux.org/yay.git
+sudo git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 

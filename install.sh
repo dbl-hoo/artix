@@ -107,10 +107,11 @@ perform_chroot_setup() {
   artix-chroot /mnt passwd
   artix-chroot /mnt passwd $USERNAME
 
-  mkdir /mnt/home/$USERNAME/install
-  cp setup.sh /mnt/home/$USERNAME/install
-  cp packages.txt /mnt/home/$USERNAME/install
-  cp aur_packages.txt /mnt/home/$USERNAME/install
+  #create directory and copy scripts
+  artix-chroot /mnt mkdir /home/$USERNAME/install
+  artix-chroot /mnt cp setup.sh /home/$USERNAME/install
+  artix-chroot /mnt cp packages.txt /home/$USERNAME/install
+  artix-chroot /mnt cp aur_packages.txt /home/$USERNAME/install
 
   read -p "Hit enter to continue: "
 
