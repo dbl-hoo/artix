@@ -1,0 +1,5 @@
+ttf-meslo-nerd-font-powerlevel10k #font for powerlevel 10k
+rofi-lbonn-wayland-git #menu
+swaylock-effects #lock screen
+wlogout #logout manager
+pfetch #simple pfetch
