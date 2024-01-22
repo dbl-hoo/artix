@@ -109,6 +109,10 @@ perform_chroot_setup() {
 
   mkdir /mnt/home/$USERNAME/install
   cp setup.sh /mnt/home/$USERNAME/install
+  cp packages.txt /mnt/home/$USERNAME/install
+  cp aur_packages.txt /mnt/home/$USERNAME/install
+
+  read -p "Hit enter to continue: "
 
   # Unmount partitions
   umount -R /mnt
