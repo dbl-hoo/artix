@@ -1,3 +1,6 @@
+read -p "Enter hostname: " HOSTNAME
+read -p "Enter username: " USERNAME
+
 #  Configure network (adjust accordingly)
 echo "$HOSTNAME" > /etc/hostname
 echo "127.0.0.1 localhost

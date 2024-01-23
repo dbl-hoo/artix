@@ -8,11 +8,6 @@ print_disk_info() {
 
 # Function to create and mount partitions
 
-set_variables() {
-  read -p "Enter hostname: " HOSTNAME
-  read -p "Enter username: " USERNAME
-}
-
 create_and_mount_partitions() {
   # Prompt for the drive to partition
   read -p "Enter the drive to partition (e.g., /dev/nvme0n1): " DRIVE
