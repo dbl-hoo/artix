@@ -74,7 +74,7 @@ basic_setup() {
   cp setup.sh /mnt/artixinstall
   cp chroot.sh /mnt/artixinstall
   cp packages.txt /mnt/artixinstall
-  cp aur_packages.next /mnt/artixinstall
+  cp aur_packages.txt /mnt/artixinstall
 
   #launch the confinguration script
   artix-chroot /mnt ./artixinstall/chroot.sh
