@@ -1,5 +1,6 @@
 acpi
 acpi_call
+alsa-firmware
 alsa-utils
 bash-completion
 blueman
@@ -14,6 +15,7 @@ fastfetch
 github-cli
 hplip
 hyprland
+intel-ucode
 kitty
 kitty
 needrestart
@@ -29,6 +31,7 @@ python-pywal
 pyqt5
 qt5-wayland
 qt6-waylandand
+sof-firmware
 spotify-launcher
 swayidle
 swaync

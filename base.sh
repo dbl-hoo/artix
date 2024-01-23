@@ -60,8 +60,13 @@ format_efi_partition() {
 
 # Function to perform basic setup
 basic_setup() {
+  #update the repos
+  Pacman -Syy
+  
   #set the clock
   sv up ntpd
+
+  read -p
   
   # Basestrap essential packages and network tools for Artix Linux
   basestrap /mnt base base-devel runit elogind-runit linux linux-firmware
@@ -75,6 +80,8 @@ basic_setup() {
   cp chroot.sh /mnt/artixinstall
   cp packages.txt /mnt/artixinstall
   cp aur_packages.txt /mnt/artixinstall
+
+  read -p
 
   #launch the confinguration script
   artix-chroot /mnt ./artixinstall/chroot.sh

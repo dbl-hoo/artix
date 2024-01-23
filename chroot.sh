@@ -1,8 +1,8 @@
 #  Configure network (adjust accordingly)
-echo "$HOSTNAME" > /mnt/etc/hostname
+echo "$HOSTNAME" > /etc/hostname
 echo "127.0.0.1 localhost
 ::1       localhost
-127.0.1.1 $HOSTNAME.home $HOSTNAME" > /mnt/etc/hosts
+127.0.1.1 $HOSTNAME.home $HOSTNAME" > /etc/hosts
 
 
 # set the timezone
@@ -22,13 +22,13 @@ ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
 # Enable os-prober in grub.cfg
-echo "GRUB_DISABLE_OS_PROBER=false" >> /mnt/etc/default/grub
+echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 
 # Detect other operating systems with os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Allow members of the wheel group to execute any command with sudo
-echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # Create a user and add to wheel group for sudo access
 useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,uucp $USERNAME
@@ -43,6 +43,4 @@ cp /artixinstall/setup.sh /home/$USERNAME/install
 cp /artixinstall/packages.txt /home/$USERNAME/install
 cp /artixinstall/aur_packages.txt /home/$USERNAME/install
 
-read -p "basic installation finished.  Press enter now to reboot.  Then login, confirm wifi is setup and run 3.sh to complete installation of personal packages and dotfiles"
-
-reboot
+read -p "basic installation finished.  Reboot.  Then login, confirm wifi is setup and run setup.sh to complete installation of personal packages and dotfiles"
