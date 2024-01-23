@@ -81,8 +81,6 @@ basic_setup() {
   cp packages.txt /mnt/artixinstall
   cp aur_packages.txt /mnt/artixinstall
 
-  read -p
-
   #launch the confinguration script
   artix-chroot /mnt ./artixinstall/chroot.sh
 }
