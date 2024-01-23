@@ -31,7 +31,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # Create a user and add to wheel group for sudo access
-useradd -m -G wheel,sys,rfkill,video,audio,input,power,storage,optical,lp,scanner,dbus,uucp $USERNAME
+useradd -m -G wheel,sys,rfkill $USERNAME
 
 #change passwords
 passwd
@@ -42,5 +42,6 @@ mkdir /home/$USERNAME/install
 cp /artixinstall/setup.sh /home/$USERNAME/install
 cp /artixinstall/packages.txt /home/$USERNAME/install
 cp /artixinstall/aur_packages.txt /home/$USERNAME/install
+chown $USERNAME:$USERNAME /home/$USERNAME/*
 
 read -p "basic installation finished.  Reboot.  Then login, confirm wifi is setup and run setup.sh to complete installation of personal packages and dotfiles"
