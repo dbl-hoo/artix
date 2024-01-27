@@ -16,10 +16,31 @@ install_aur_packages() {
 }
 
 install_yay() {
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepkg -si
-  cd
+  log_file="install_yay.log"
+
+  # Clone yay repository
+  git clone https://aur.archlinux.org/yay.git >> "$log_file" 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to clone yay repository. Check $log_file for details."
+    return 1
+  fi
+
+  # Change directory to yay
+  cd yay >> "$log_file" 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to change directory to yay. Check $log_file for details."
+    return 1
+  fi
+
+  # Build and install yay
+  makepkg -si >> "$log_file" 2>&1
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to build and install yay. Check $log_file for details."
+    return 1
+  fi
+
+  # Change back to the home directory
+  cd >> "$log_file" 2>&1
 }
 
 configure_pacman () {
