@@ -21,10 +21,8 @@ needrestart
 openssh
 pacman-contrib
 pavucontrol
-pipewire
 pipewire-alsa
 pipewire-jack
-pipewire-media-session
 pipewire-pulse
 python-pywal
 pyqt5

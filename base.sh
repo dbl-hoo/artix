@@ -56,7 +56,7 @@ format_efi_partition() {
 # Function to perform basic setup
 basic_setup() {
   #update the repos
-  Pacman -Syy
+  pacman -Syy
   
   #set the clock
   sv up ntpd
