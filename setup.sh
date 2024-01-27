@@ -19,28 +19,36 @@ install_yay() {
   log_file="install_yay.log"
 
   # Clone yay repository
-  git clone https://aur.archlinux.org/yay.git >> "$log_file" 2>&1
+  git clone https://aur.archlinux.org/yay.git 2>> "$log_file"
   if [ $? -ne 0 ]; then
-    echo "Error: Failed to clone yay repository. Check $log_file for details."
+    echo "Error: Failed to clone yay repository. Check $log_file for details." >&2
     return 1
   fi
+  echo "yay repository cloned successfully."
 
   # Change directory to yay
-  cd yay >> "$log_file" 2>&1
+  cd yay 2>> "$log_file"
   if [ $? -ne 0 ]; then
-    echo "Error: Failed to change directory to yay. Check $log_file for details."
+    echo "Error: Failed to change directory to yay. Check $log_file for details." >&2
     return 1
   fi
+  echo "Changed directory to yay."
 
   # Build and install yay
-  makepkg -si >> "$log_file" 2>&1
+  makepkg -si 2>> "$log_file"
   if [ $? -ne 0 ]; then
-    echo "Error: Failed to build and install yay. Check $log_file for details."
+    echo "Error: Failed to build and install yay. Check $log_file for details." >&2
     return 1
   fi
+  echo "yay built and installed successfully."
 
   # Change back to the home directory
-  cd >> "$log_file" 2>&1
+  cd 2>> "$log_file"
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to change back to the home directory. Check $log_file for details." >&2
+    return 1
+  fi
+  echo "Changed back to the home directory."
 }
 
 configure_pacman () {
