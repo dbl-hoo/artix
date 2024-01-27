@@ -12,4 +12,4 @@ curl -L https://bit.ly/artix_install | tar -xzvf -
 
 cd artix-main
 
-./install.sh
+./base.sh

@@ -1,6 +1,6 @@
 ttf-meslo-nerd-font-powerlevel10k
-rofi-lbonn-wayland-git 
-swaylock-effects 
-wlogout 
-pfetch 
-floorp
+rofi-lbonn-wayland-git
+swaylock-effects
+wlogout
+pfetch
+floorp-bin

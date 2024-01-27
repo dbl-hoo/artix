@@ -1,7 +1,5 @@
 acpi
 acpi_call
-alsa-firmware
-alsa-utils
 bash-completion
 blueman
 bluez
@@ -17,7 +15,8 @@ hplip
 hyprland
 intel-ucode
 kitty
-kitty
+ly
+nano
 needrestart
 openssh
 pacman-contrib
@@ -30,9 +29,10 @@ pipewire-pulse
 python-pywal
 pyqt5
 qt5-wayland
-qt6-waylandand
+qt6-wayland
 sof-firmware
 spotify-launcher
+sway
 swayidle
 swaync
 ttf-font-awesome
