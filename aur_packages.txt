@@ -1,6 +1,11 @@
-ttf-meslo-nerd-font-powerlevel10k
-rofi-lbonn-wayland-git
-swaylock-effects
-wlogout
-pfetch
-floorp-bin
+    floorp-bin
+    pfetch
+    python2
+    rofi-lbonn-wayland-git
+    swaylock-effects
+    swaync
+    swww
+    ttf-meslo-nerd-font-powerlevel10k
+    vscodium-bin
+    waybar-updates
+    wlogout

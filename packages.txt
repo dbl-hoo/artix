@@ -15,8 +15,9 @@ hplip
 hyprland
 intel-ucode
 kitty
-ly
 nano
+nano-syntax-highlighting
+nwg-look
 needrestart
 openssh
 pacman-contrib
@@ -24,6 +25,7 @@ pavucontrol
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+polkit-gnome
 python-pywal
 pyqt5
 qt5-wayland
@@ -32,13 +34,15 @@ sof-firmware
 spotify-launcher
 sway
 swayidle
-swaync
+thunar
+tldr
 ttf-font-awesome
 variety
 waybar
+wireplumber
 xdg-desktop-portal-hyprland
 xdg-{utils,user-dirs}
-xfce-polkit
+xsettingsd
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting

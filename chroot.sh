@@ -9,7 +9,7 @@ echo "127.0.0.1 localhost
 
 
 # set the timezone
-ln -sf /usr/share/zoneinfo/Americas/New_York /etc/localtime
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
 #Run hwclock to generate /etc/adjtime:
 hwclock --systohc
@@ -20,7 +20,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 # Install network manager, grub, os-prober and enable networkmanager
-pacman -S --noconfirm networkmanager networkmanager-runit grub os-prober git neofetch
+pacman -S --noconfirm networkmanager networkmanager-runit efiboothmgr grub os-prober git neofetch
 ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default/
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Artix --recheck --removable
 
@@ -34,7 +34,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # Create a user and add to wheel group for sudo access
-useradd -m -G wheel,sys,rfkill $USERNAME
+useradd -m -G wheel,sys,rfkill,audio $USERNAME
 
 #change passwords
 passwd
