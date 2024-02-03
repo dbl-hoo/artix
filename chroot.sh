@@ -34,7 +34,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # Create a user and add to wheel group for sudo access
-useradd -m -G wheel,sys,rfkill,audio $USERNAME
+useradd -m -G wheel,sys,rfkill,audio,video $USERNAME
 
 #change passwords
 passwd

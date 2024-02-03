@@ -4,10 +4,12 @@ bash-completion
 blueman
 bluez
 bluez-utils
+brightnessctl
 chezmoi
 cliphist
 code
 cups
+efibootmgr
 eza
 fastfetch
 github-cli
@@ -17,6 +19,7 @@ intel-ucode
 kitty
 nano
 nano-syntax-highlighting
+network-manager-applet
 nwg-look
 needrestart
 openssh
