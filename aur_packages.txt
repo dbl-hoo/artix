@@ -7,6 +7,6 @@
     swww
     ttf-meslo-nerd-font-powerlevel10k
     vscodium-bin
-    waybar-updates
+    waybar-module-pacman-updates
     wlogout
     hycov-git
