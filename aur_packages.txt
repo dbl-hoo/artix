@@ -2,6 +2,7 @@
     pfetch
     python2
     rofi-lbonn-wayland-git
+    needrestart
     swaylock-effects
     swaync
     swww

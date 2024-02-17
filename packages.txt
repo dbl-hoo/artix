@@ -25,7 +25,6 @@ nano
 nano-syntax-highlighting
 network-manager-applet
 nwg-look
-needrestart
 openssh
 pacman-contrib
 pavucontrol
